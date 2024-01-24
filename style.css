@@ -202,6 +202,7 @@
   opacity: 1;
   z-index: 1;
   transition-delay: 0ms;
+  height: 50%;
 }
 
 .carousel-button {
@@ -230,6 +231,26 @@
 
 .carousel-button.next {
   right: 100px;
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+  display: flex;
+}
+
+.carousel-dots li {
+  width: 6px;
+  height: 6px;
+  background-color: #f4f4f4;
+  border-radius: 50%;
+  margin: 40px 0.4rem;
+  cursor: pointer;
+}
+.ss {
+  cursor: pointer;
 }
 
 /* header {

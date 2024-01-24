@@ -154,19 +154,19 @@
             <li class="slide" data-active>
               <img
                 src="./assets/images/usaidlogo.jpg"
-                alt="Nature Image #1"
+                alt="partners-logo"
                 width="246"
                 height="74"
               />
               <img
                 src="/assets/images/spaceintlogo.jpg"
-                alt="Nature Image #1"
+                alt="partners-logo"
                 width="241"
                 height="80"
               />
               <img
                 src="/assets/images/tinetilogo.jpg"
-                alt="Nature Image #1"
+                alt="partners-logo"
                 width="250"
                 height="45"
               />
@@ -174,19 +174,19 @@
             <li class="slide">
               <img
                 src="./assets/images/Tegetalogo.jpg"
-                alt="Nature Image #2"
+                alt="partners-logo"
                 width="248"
                 height="71"
               />
               <img
                 src="./assets/images/spectrelogo.jpg"
-                alt="Nature Image #2"
+                alt="partners-logo"
                 width="187"
                 height="64"
               />
               <img
                 src="./assets/images/tbclizingi.jpg"
-                alt="Nature Image #2"
+                alt="partners-logo"
                 width="314"
                 height="95"
               />
@@ -195,7 +195,7 @@
               <img
                 class="ufc-logo"
                 src="./assets/images/ufclogo.jpg"
-                alt="Nature Image #3"
+                alt="partners-logo"
                 width="227"
                 height="64"
               />
@@ -207,56 +207,49 @@
           <div class="carousel-button next" data-carousel-button="next">
             <img src="./assets/images/iconArrowLeft.png" alt="left-arrow" />
           </div>
+          <ul class="carousel-dots">
+            <li data-carousel-button="0"><a href="#"></a></li>
+            <li data-carousel-button="1"><a href="#"></a></li>
+            <li data-carousel-button="2"><a href="#"></a></li>
+          </ul>
         </div>
       </section>
 
       <script>
-        const buttons = document.querySelectorAll("[data-carousel-button]");
+        document.addEventListener("DOMContentLoaded", function () {
+          const buttons = document.querySelectorAll("[data-carousel-button]");
 
-        buttons.forEach((button) => {
-          button.addEventListener("click", () => {
-            const offset = button.dataset.carouselButton === "next" ? 1 : -1;
-            const slides = button
-              .closest("[data-carousel]")
-              .querySelector("[data-slides]");
+          buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+              const slides = button
+                .closest("[data-carousel]")
+                .querySelector("[data-slides]");
+              const dots = button
+                .closest("[data-carousel]")
+                .querySelectorAll(".carousel-dots li");
 
-            const activeSlide = slides.querySelector("[data-active]");
-            let newIndex = [...slides.children].indexOf(activeSlide) + offset;
-            if (newIndex < 0) newIndex = slides.children.length - 1;
-            if (newIndex >= slides.children.length) newIndex = 0;
+              const activeSlide = slides.querySelector("[data-active]");
+              let currentIndex = [...slides.children].indexOf(activeSlide);
 
-            slides.children[newIndex].dataset.active = true;
-            delete activeSlide.dataset.active;
+              let targetIndex;
+              if (button.dataset.carouselButton === "next") {
+                targetIndex = (currentIndex + 1) % slides.children.length;
+              } else if (button.dataset.carouselButton === "prev") {
+                targetIndex =
+                  (currentIndex - 1 + slides.children.length) %
+                  slides.children.length;
+              } else {
+                targetIndex = parseInt(button.dataset.carouselButton);
+              }
+
+              slides.children[currentIndex].removeAttribute("data-active");
+              slides.children[targetIndex].setAttribute("data-active", "true");
+
+              dots[currentIndex].classList.remove("active");
+              dots[targetIndex].classList.add("active");
+            });
           });
         });
-        // let currentIndex = 0;
-        // const items = document.querySelectorAll(".carousel-item");
-        // const totalItems = items.length;
-
-        // function nextSlide() {
-        //   if (currentIndex < totalItems - 1) {
-        //     currentIndex++;
-        //   } else {
-        //     currentIndex = 0;
-        //   }
-        //   updateCarousel();
-        // }
-
-        // function prevSlide() {
-        //   if (currentIndex > 0) {
-        //     currentIndex--;
-        //   } else {
-        //     currentIndex = totalItems - 1;
-        //   }
-        //   updateCarousel();
-        // }
-
-        // function updateCarousel() {
-        //   const newTransformValue = -currentIndex * 100 + "%";
-        //   document.querySelector(
-        //     ".carousel"
-        //   ).style.transform = `translateX(${newTransformValue})`;
-        // }
       </script>
     </main>
   </body>
