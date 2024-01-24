@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <link
       rel="icon"
-      type="image/svg+xml"
-      href="https://static.wixstatic.com/media/93e8a3_03d83d668a5f417ca646a5e511f8c02a%7Emv2.png/v1/fill/w_32%2Ch_32%2Clg_1%2Cusm_0.66_1.00_0.01/93e8a3_03d83d668a5f417ca646a5e511f8c02a%7Emv2.png"
+      sizes="192x192"
+      href="https://static.wixstatic.com/media/93e8a3_03d83d668a5f417ca646a5e511f8c02a%7Emv2.png/v1/fill/w_192%2Ch_192%2Clg_1%2Cusm_0.66_1.00_0.01/93e8a3_03d83d668a5f417ca646a5e511f8c02a%7Emv2.png"
+      type="image/png"
     />
     <link
       rel="stylesheet"
@@ -143,6 +144,120 @@
           </div>
         </div>
       </section>
+
+      <!-- carousel goes here  -->
+
+      <section aria-label="Newest Photos" class="carousel-section">
+        <h4 class="carousel-title">პროექტის პარტნიორები</h4>
+        <div class="carousel" data-carousel>
+          <ul data-slides>
+            <li class="slide" data-active>
+              <img
+                src="./assets/images/usaidlogo.jpg"
+                alt="Nature Image #1"
+                width="246"
+                height="74"
+              />
+              <img
+                src="/assets/images/spaceintlogo.jpg"
+                alt="Nature Image #1"
+                width="241"
+                height="80"
+              />
+              <img
+                src="/assets/images/tinetilogo.jpg"
+                alt="Nature Image #1"
+                width="250"
+                height="45"
+              />
+            </li>
+            <li class="slide">
+              <img
+                src="./assets/images/Tegetalogo.jpg"
+                alt="Nature Image #2"
+                width="248"
+                height="71"
+              />
+              <img
+                src="./assets/images/spectrelogo.jpg"
+                alt="Nature Image #2"
+                width="187"
+                height="64"
+              />
+              <img
+                src="./assets/images/tbclizingi.jpg"
+                alt="Nature Image #2"
+                width="314"
+                height="95"
+              />
+            </li>
+            <li class="slide">
+              <img
+                class="ufc-logo"
+                src="./assets/images/ufclogo.jpg"
+                alt="Nature Image #3"
+                width="227"
+                height="64"
+              />
+            </li>
+          </ul>
+          <div class="carousel-button prev" data-carousel-button="prev">
+            <img src="./assets/images/iconArrowRight.png" alt="right-arrow" />
+          </div>
+          <div class="carousel-button next" data-carousel-button="next">
+            <img src="./assets/images/iconArrowLeft.png" alt="left-arrow" />
+          </div>
+        </div>
+      </section>
+
+      <script>
+        const buttons = document.querySelectorAll("[data-carousel-button]");
+
+        buttons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const offset = button.dataset.carouselButton === "next" ? 1 : -1;
+            const slides = button
+              .closest("[data-carousel]")
+              .querySelector("[data-slides]");
+
+            const activeSlide = slides.querySelector("[data-active]");
+            let newIndex = [...slides.children].indexOf(activeSlide) + offset;
+            if (newIndex < 0) newIndex = slides.children.length - 1;
+            if (newIndex >= slides.children.length) newIndex = 0;
+
+            slides.children[newIndex].dataset.active = true;
+            delete activeSlide.dataset.active;
+          });
+        });
+        // let currentIndex = 0;
+        // const items = document.querySelectorAll(".carousel-item");
+        // const totalItems = items.length;
+
+        // function nextSlide() {
+        //   if (currentIndex < totalItems - 1) {
+        //     currentIndex++;
+        //   } else {
+        //     currentIndex = 0;
+        //   }
+        //   updateCarousel();
+        // }
+
+        // function prevSlide() {
+        //   if (currentIndex > 0) {
+        //     currentIndex--;
+        //   } else {
+        //     currentIndex = totalItems - 1;
+        //   }
+        //   updateCarousel();
+        // }
+
+        // function updateCarousel() {
+        //   const newTransformValue = -currentIndex * 100 + "%";
+        //   document.querySelector(
+        //     ".carousel"
+        //   ).style.transform = `translateX(${newTransformValue})`;
+        // }
+      </script>
     </main>
   </body>
 </html>
