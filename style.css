@@ -397,6 +397,16 @@ footer {
   color: #1a1e1f;
 }
 
+/* MEDIA QUERYS */
+
+@media (max-width: 600px) {
+  .Tedu-title-contairer {
+    width: 500px;
+  }
+  .Tedu-title {
+    width: 500px;
+  }
+}
 /* header {
   padding: 20px 150px;
 }
